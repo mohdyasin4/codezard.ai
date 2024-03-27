@@ -1,0 +1,90 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[11].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[11].oneOf[9].use[5]!./src/styles/Snav.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Snav_shape1__G_MX_ {
+  width: 1rem;
+  height: 2rem;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  padding: 0.2rem;
+}
+
+.Snav_shape1__G_MX_::before,
+.Snav_shape1__G_MX_::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-radius: 20px;
+  width: 8px;
+  height: 2px;
+  background-color: #8a8a8a;
+  transition: transform 0.5s ease;
+}
+
+.Snav_shape1__G_MX_::before {
+  transform: skewX(50deg);
+  transform: translateY(-50%) rotate(90deg);
+  transition: 0.3s ease;
+}
+
+.Snav_shape1__G_MX_::after {
+  top: 10px;
+  transform: translateY(-50%) rotate(90deg);
+  transition: 0.3s ease;
+}
+
+.Snav_shape1__G_MX_:hover::before {
+  transform: translateY(-50%) rotate(70deg);
+  background-color: #fff;
+}
+
+.Snav_shape1__G_MX_:hover::after {
+  transform: translateY(-50%) rotate(110deg);
+  background-color: #fff;
+}
+
+.Snav_shape2__dhiTu {
+  width: 1rem;
+  height: 2rem;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  padding: 0.2rem;
+}
+
+.Snav_shape2__dhiTu::before,
+.Snav_shape2__dhiTu::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-radius: 20px;
+  width: 8px;
+  height: 2px;
+  background-color: #8a8a8a;
+  transition: transform 0.5s ease;
+}
+
+.Snav_shape2__dhiTu::before {
+  transform: skewX(50deg);
+  transform: translateY(-50%) rotate(90deg);
+  transition: 0.3s ease;
+}
+
+.Snav_shape2__dhiTu::after {
+  top: 10px;
+  transform: translateY(-50%) rotate(90deg);
+  transition: 0.3s ease;
+}
+
+.Snav_shape2__dhiTu:hover::before {
+  transform: translateY(-50%) rotate(120deg);
+  background-color: #fff;
+}
+
+.Snav_shape2__dhiTu:hover::after {
+  transform: translateY(-50%) rotate(60deg);
+  background-color: #fff;
+}
