@@ -1,0 +1,12 @@
+.navbar{
+    height: 6vh; 
+    background-color: hsl(var(--background));
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    /* overflow-wrap: no-wrap; */
+
+    
+}

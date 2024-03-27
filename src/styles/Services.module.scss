@@ -1,0 +1,39 @@
+.card{
+    background-color: #1A1A1A;
+    padding: 25px;
+    width: 43.8rem;
+    border: 1px solid #3E3E3E;
+    border-radius: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    transition: all 0.22s ease-in-out;
+
+    &:hover{
+        cursor: pointer;
+        background-color: hwb(0 7% 93%);
+        transform: scale(0.98);
+        transition: all 0.2s ease-in-out;
+    }
+
+    @media screen and (max-width: 1600px) {
+        width: 40rem;
+        
+    }
+    @media screen and (max-width: 1400px) {
+        width: 30rem;
+    }
+}
+
+.icon{
+    background-color: rgba(114, 52, 213, 0.2);
+    border-radius: 12px;
+    padding: 15px
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
