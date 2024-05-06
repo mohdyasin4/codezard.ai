@@ -77,7 +77,7 @@ export default function Home() {
       iconColor: "#3E90F0",
       iconSize: 34,
       // onclick: () => {router.push((`/translate-code`))}, // Add onclick function to navigate to the specified page
-      alertContent: <ComingSoonDialog />
+      alertContent: <ComingSoonDialog />,
       backgroundColor: "#0084ff3e", // Example background color
     },
     {
