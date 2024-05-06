@@ -70,7 +70,7 @@ export const premadeTemplates = [
   },
   {
     id: 2,
-    icon: <Squircle radius
+    icon: Squircle({ radius: "14", stroke: "none", fill: "#7AFF11", size: 12 }), // Use Squircle function instead of JSX
     text: "Signup Form",
     prompt:
       "Develop an intuitive signup form incorporating validation and error handling. Utilize a CSS framework such as Tailwind CSS for enhanced form styling and functionality. make sure css and js codde is inline",
