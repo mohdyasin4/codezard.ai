@@ -27,7 +27,7 @@ import Overlay from "@/components/Loading";
 import { generateCodeOpenAI } from "@/app/api/openai/api"; // Import the generateCode function
 import { generateCodeGemini } from "./api/gemini/api";
 import { GeneratedCodeContext, GeneratedCodeProvider, useGeneratedCode } from './GeneratedCodeContext';
-import { premadeTemplates } from "./generate-code/page";
+import { premadeTemplates } from "./generate-code/options";
 import GenerateCodePage from "./generate-code/page";
 import Home from "./page";
 import { languages } from "monaco-editor";
