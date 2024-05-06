@@ -32,7 +32,7 @@ import { useRouter } from 'next/navigation';
 import { usePathname } from "next/navigation";
 import { GeneratedCodeContext} from "../GeneratedCodeContext";
 
-export default function GenerateCodePage({ generatedCode, language}: { generatedCode: any, language:any}) {
+export default function GenerateCodePage() {
   const pathname = usePathname();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
