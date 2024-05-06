@@ -73,10 +73,39 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "typewriter": {
+          to: {
+            left: '100%',
+          },
+        },
+        "shine": {
+          from: { backgroundPosition: '0% 0' },
+          to: { backgroundPosition: '-400% 0' },
+        },
+        "blink": {
+          '0%': {
+            opacity: '0',
+          },
+          '0.1%': {
+            opacity: '1',
+          },
+          '50%': {
+            opacity: '1',
+          },
+          '50.1%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "shine": "shine 14s ease-in-out infinite",
+        "typewriter": 'typewriter 4s steps(34) forwards',
+        "caret": 'typewriter 4s steps(34) forwards, blink 1s steps(34) infinite 4s',
       },
     },
   },

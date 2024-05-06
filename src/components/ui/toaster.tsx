@@ -9,16 +9,18 @@ import {
   ToastViewport,
 } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
+import { Icon } from "@iconify/react"
 
 export function Toaster() {
   const { toasts } = useToast()
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {toasts.map(function ({ id, icon, title, description, action, ...props }) {
         return (
           <Toast key={id} {...props}>
-            <div className="grid gap-1">
+            <div className="flex flex-row items-center gap-1">
+              <Icon color="neongreen" icon={icon} width="1.5rem" height="1.5rem" className="mr-2"/>
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
                 <ToastDescription>{description}</ToastDescription>
