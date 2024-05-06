@@ -34,7 +34,7 @@ const SplashScreen = () => {
         transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 1}}
         className=" flex item-center justify-center mt-12"
       >
-        <Image src="/vectorvh.svg" alt="logo" width={50} height={50} />
+        <Image src="/codezardicon.svg" alt="logo" width={50} height={50} />
         <motion.div
           initial={{ opacity: 0, scale: 0}}
           animate={{ opacity: 1, scale: 1,}}
