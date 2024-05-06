@@ -167,9 +167,6 @@ export default function RootLayout({
                     <Toaster />
                   </div>
                 </div>
-                {generatedCode && (
-                  <GenerateCodePage generatedCode={generatedCode} language={language}/>
-                )}
               </>
             )}
           </ThemeProvider>
