@@ -118,9 +118,6 @@ export default function RootLayout({
                   {!isHomepage && (
                     <Sidebar
                       setLoading={setLoading}
-                      generateCode={(prompt: string) =>
-                        generateCode(prompt, setLoading)
-                      }
                       upperItems={[
                         <SidebarItem
                           key="code-generation"

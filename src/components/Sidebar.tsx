@@ -38,7 +38,6 @@ interface SidebarProps {
     text: string;
     prompt: string;
   }[];
-  generateCode: (prompt: string) => Promise<void>; // Define generateCode prop
 }
 
 export const SidebarContext = createContext<any>(null); // Export SidebarContext
@@ -46,7 +45,6 @@ export const SidebarContext = createContext<any>(null); // Export SidebarContext
 export default function Sidebar({
   upperItems,
   lowerItems,
-  generateCode,
   setLoading,
   projects,
 }: SidebarProps) {
