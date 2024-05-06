@@ -11,11 +11,11 @@ import {
 import Link from "next/link";
 import { generateCodeOpenAI } from "@/app/api/openai/api";
 import { generateCodeGemini } from "@/app/api/gemini/api";
-import { GeneratedCodeContext, GeneratedCodeProvider, useGeneratedCode } from '@/app/GeneratedCodeContext';
+import { GeneratedCodeContext, useGeneratedCode } from '@/app/GeneratedCodeContext';
 import { premadeTemplates } from "@/app/generate-code/options";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Separator } from "./ui/separator";
-import { ChevronDown, Loader2, PartyPopper, X } from "lucide-react";
+import { ChevronDown, PartyPopper, X } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -25,8 +25,6 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import { Check } from "lucide-react";
-import { Icon } from "@iconify/react";
-import Overlay from "./Loading";
 
 interface SidebarProps {
   setLoading: (value: boolean) => void;
