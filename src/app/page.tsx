@@ -19,6 +19,7 @@ import Loading from "./loading";
 import ComingSoonDialog from "@/components/ComingSoon";
 import { useRouter } from "next/navigation";
 import ReviewDialog from "@/components/ReviewDialog";
+import ReviewCodePage from "@/app/review-code/page";
 
 export default function Home() {
   const router = useRouter();

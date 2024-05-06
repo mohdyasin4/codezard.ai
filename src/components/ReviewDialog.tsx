@@ -19,8 +19,8 @@ import { ApiKeyInput } from "./apikey-input";
 import { languageOptions, templateOptions, modelOptions } from "@/app/generate-code/options";
 import { AlertCircle, Check, Loader2, SearchCode } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { generateCodeOpenAI } from "@/app/api/openai/api";
-import { generateCodeGemini } from "@/app/api/gemini/api";
+import { generateCodeOpenAI, generateReviewOpenAI } from "@/app/api/openai/api";
+import { generateCodeGemini, generateReviewGemini } from "@/app/api/gemini/api";
 import { premadeTemplates } from "@/app/generate-code/page";
 import { GeneratedCodeContext, useGeneratedCode } from "@/app/GeneratedCodeContext";
 import { Input } from "./ui/input";
@@ -37,23 +37,35 @@ interface ReviewDialogProps {
 
 const ReviewDialog = ({selectedModel,apiKey,setSelectedModel, setApiKey, handleModelChange, handleApiKeyChange}:ReviewDialogProps) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
+  const [code, setCode] = useState("");
 
-  const handleReviewCode = () => {
-    // Store selected model in localStorage
-    localStorage.setItem("selectedModel", selectedModel);
-  
-  // Conditionally store the API key based on the selected model
-  if (selectedModel === "gpt") {
-    localStorage.setItem("gpt-apiKey", apiKey);
-  } else if (selectedModel === "gemini") {
-    localStorage.setItem("gemini-apiKey", apiKey);
-  }
-  
-    // Navigate to the review page
-    router.push("/review-code");
+  const handleReviewCode = async () => {
+    // Check if all fields are filled
+    if (!selectedModel || !apiKey || !code.trim()) {
+      alert("Please select a model, provide an API key, and enter some code for review.");
+      return;
+    }
+
+    try {
+      let response;
+      if (selectedModel === "gpt") {
+        response = await generateReviewOpenAI(code,setLoading);
+      } else if (selectedModel === "gemini") {
+        response = await generateReviewGemini(code,setLoading);
+      } else {
+        console.error("Invalid model selected");
+        return;
+      }
+      localStorage.setItem("code", code);
+      localStorage.setItem("reviewOutput", response);
+      router.push("/review-code");
+    } catch (error) {
+      console.error("Error reviewing code:", error);
+      // Handle error
+    }
   };
-  
   
   useEffect(() => {
     // Check if all fields are filled
@@ -104,7 +116,7 @@ const ReviewDialog = ({selectedModel,apiKey,setSelectedModel, setApiKey, handleM
         <Label htmlFor="code" className="text-left">
           Code for Review
         </Label>
-        <Textarea placeholder="Paste your code here..." className="h-[150px]" />
+        <Textarea id="code-area" placeholder="Paste your code here..." value={code} className="h-[150px]" onChange={(e) => setCode(e.target.value)} />
       </div>
 
       {/* AI Model Select */}
@@ -121,15 +133,22 @@ const ReviewDialog = ({selectedModel,apiKey,setSelectedModel, setApiKey, handleM
 
       </div>
 
-      {/* Review Code Button */}
-      <div className="mt-4">
+     {/* Review Code Button */}
+     <div className="mt-4">
         <Button
-          variant="default"
+          type="submit"
           className="w-full"
+          disabled={!allFieldsFilled || loading} // Disable button when loading
           onClick={handleReviewCode}
-          disabled={!allFieldsFilled} // Disable button when not all fields are filled
         >
-          Review Code
+          {loading ? ( // Render spinner and text conditionally based on loading state
+            <>
+              <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+              <span>Analyzing Your Code...</span>
+            </>
+          ) : (
+            <>Review Code</>
+          )}
         </Button>
       </div>
     </div>

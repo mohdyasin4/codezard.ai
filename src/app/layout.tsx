@@ -173,9 +173,6 @@ export default function RootLayout({
                 {generatedCode && (
                   <GenerateCodePage generatedCode={generatedCode} language={language}/>
                 )}
-                {isReview && (
-                  <ReviewCodePage setLoading={setLoading}/>
-                )}
               </>
             )}
           </ThemeProvider>

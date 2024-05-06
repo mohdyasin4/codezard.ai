@@ -46,7 +46,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { generateReviewOpenAI } from "../api/openai/api";
 import { generateReviewGemini } from "../api/gemini/api";
 import Overlay from "@/components/Loading";
@@ -58,6 +58,7 @@ interface ReviewCodePageProps {
 
 export default function ReviewCodePage() {
   const [loading, setLoading] = useState(false);
+  const [code, setCode] = useState(""); // State to store the code
   const [output, setOutput] = useState(""); // State to store the output
 
   
@@ -97,6 +98,13 @@ export default function ReviewCodePage() {
       // Handle error
     }
   };
+
+  useEffect(() => {
+    let lscode = localStorage.getItem("code");
+    let reviewOutput = localStorage.getItem("reviewOutput");
+    setCode(lscode);
+    setOutput(reviewOutput);
+  }, []);
 
   return (
     <TooltipProvider >
@@ -171,6 +179,8 @@ export default function ReviewCodePage() {
                   {/* <Label htmlFor="content">Content</Label> */}
                   <Textarea
                     id="codeholder"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
                     placeholder="You are a..."
                     className="min-h-[79vh]"
                   />
