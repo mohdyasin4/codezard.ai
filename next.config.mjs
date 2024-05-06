@@ -11,6 +11,10 @@ const nextConfig = {
         // !! WARN !!
         ignoreBuildErrors: true,
       },
+      images: {
+        loader: 'akamai',
+        path: "/",
+      }
 /* ...Your other config rules */
 }
 
