@@ -70,28 +70,28 @@ export const premadeTemplates = [
   },
   {
     id: 2,
-    icon: <Squircle radius="14" stroke="none" fill="#7AFF11" size={12} />, // Use Squircle component directly
+    icon: <Squircle radius="14" stroke="none" fill="#8E55EA" size={12} />, // Use Squircle component directly
     text: "Signup Form",
     prompt:
       "Develop an intuitive signup form incorporating validation and error handling. Utilize a CSS framework such as Tailwind CSS for enhanced form styling and functionality. make sure css and js codde is inline",
   },
   {
     id: 3,
-    icon: <Squircle radius="14" stroke="none" fill="#7AFF11" size={12} />, // Use Squircle component directly
+    icon: <Squircle radius="14" stroke="none" fill="#3E90F0" size={12} />, // Use Squircle component directly
     text: "To-Do List App",
     prompt:
       "Build a responsive to-do list application in simple html inline css and javascript with features like adding, deleting, and updating tasks. Implement drag-and-drop functionality for task reordering using a library like React Beautiful DnD. make sure css and js codde is inline",
   },
   {
     id: 4,
-    icon: <Squircle radius="14" stroke="none" fill="#7AFF11" size={12} />, // Use Squircle component directly
+    icon: <Squircle radius="14" stroke="none" fill="#D84C10" size={12} />, // Use Squircle component directly
     text: "TicTacToe Game",
     prompt:
       "Develop a TicTacToe game with a sleek user interface and interactive gameplay. Utilize CSS animations for smooth transitions between game states and provide options for single-player and multiplayer modes.make sure css and js codde is inline",
   },
   {
     id: 5,
-    icon: <Squircle radius="14" stroke="none" fill="#7AFF11" size={12} />, // Use Squircle component directly
+    icon: <Squircle radius="14" stroke="none" fill="#CFFF04" size={12} />, // Use Squircle component directly
     text: "Calculator",
     prompt:
       "Create a functional calculator application in HTML inline CSS and javascript with support for basic arithmetic operations. Implement keyboard support for enhanced user experience ",
