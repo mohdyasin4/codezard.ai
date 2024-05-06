@@ -54,8 +54,9 @@ export default function ReviewCodePage() {
     // Retrieve the selected model from the localstorag
     const selectedModel = localStorage.getItem("selectedModel");
     // Retrieve the code from the code-holder textarea
-    const code = document.getElementById("codeholder")?.value;
-
+    const codeInput = document.getElementById("codeholder") as HTMLInputElement | null;
+    const code = codeInput?.value;
+    
     // Check if code is empty
     if (!code.trim()) {
       alert("Please enter some code for review.");
