@@ -58,7 +58,7 @@ export default function ReviewCodePage() {
     const code = codeInput?.value;
     
     // Check if code is empty
-    if (!code.trim()) {
+    if (!code || !code.trim()) {
       alert("Please enter some code for review.");
       return;
     }
