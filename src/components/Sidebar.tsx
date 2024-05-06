@@ -39,7 +39,6 @@ interface SidebarProps {
     prompt: string;
   }[];
   generateCode: (prompt: string) => Promise<void>; // Define generateCode prop
-  setEditorContent: (value: any) => void; // Add setEditorContent as a prop
 }
 
 export const SidebarContext = createContext<any>(null); // Export SidebarContext
@@ -49,7 +48,6 @@ export default function Sidebar({
   lowerItems,
   generateCode,
   setLoading,
-  setEditorContent,
   projects,
 }: SidebarProps) {
   const [expanded, setExpanded] = useState(true); // Set initial expanded state based on prop
