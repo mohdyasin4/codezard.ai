@@ -231,7 +231,7 @@ const Editor = () => {
       if (selectedModel === "gpt") {
         explaination = await generateExplainationOpenAI(htmlCode, setLoading);
       } else if (selectedModel === "gemini") {
-        explaination = await generateExplainationGemini(htmlCode, setLoading);
+        explaination = await generateExplainationGemini(htmlCode, setLoading, localStorage.getItem("gemini-apiKey") || "");
       } else {
         console.error("Invalid model selected");
         return;

@@ -70,7 +70,7 @@ export default function ReviewCodePage() {
       if (selectedModel === "gpt") {
         response = await generateReviewOpenAI(code, setLoading);
       } else if (selectedModel === "gemini") {
-        response = await generateReviewGemini(code, setLoading);
+        response = await generateReviewGemini(code, setLoading, localStorage.getItem("gemini-api-key") || "");
       } else {
         console.error("Invalid model selected");
         return;

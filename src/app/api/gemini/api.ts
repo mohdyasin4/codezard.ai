@@ -37,7 +37,7 @@ export async function generateCodeGemini(prompt: string, setLoading: React.Dispa
     }
 }
 
-export async function generateExplainationGemini(code: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
+export async function generateExplainationGemini(code: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>, apiKey: string) {
     setLoading(true);
     try {
         // Construct the prompt with the code snippet and the task description
@@ -53,6 +53,7 @@ Include relevant headings, bullet points, and blank lines for better readability
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`,
             },
             body: JSON.stringify({ prompt }),
         });
@@ -74,7 +75,7 @@ Include relevant headings, bullet points, and blank lines for better readability
     }
 }
 
-export async function generateReviewGemini(code: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
+export async function generateReviewGemini(code: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>, apiKey: string) {
     setLoading(true);
     try {
         // Construct the prompt with the code snippet and the task description
@@ -84,6 +85,7 @@ export async function generateReviewGemini(code: string, setLoading: React.Dispa
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`,
             },
             body: JSON.stringify({ prompt }),
         });
