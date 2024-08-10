@@ -34,6 +34,7 @@ import { languages } from "monaco-editor";
 import { set } from "date-fns";
 import { Separator } from "@/components/ui/separator";
 import ReviewCodePage from "./review-code/page";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -167,6 +168,7 @@ export default function RootLayout({
                   <div className="flex flex-col w-full relative z-auto" >
                     {loading && <Overlay text="Generating Code..."/>}
                     {children}
+                    <Analytics />
                     <Toaster />
                   </div>
                 </div>
