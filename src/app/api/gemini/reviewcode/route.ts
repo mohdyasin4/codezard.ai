@@ -1,37 +1,42 @@
-// app/api/gemini/reviewcode/route.ts
-
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { GoogleGenerativeAIStream, StreamingTextResponse } from 'ai';
-
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '');
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { toast } from "sonner";
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
     try {
-        // Extract the `prompt` from the body of the request
-        const body = await req.json();
-        const { prompt } = body;
+        // Extract the prompt from the body of the request
+        const { prompt } = await req.json();
 
-        // Ask Google Generative AI for a review given the prompt
-        const response = await genAI
-            .getGenerativeModel({ model: 'gemini-pro' })
-            .generateContentStream({
-                contents: [{ role: 'user', parts: [{ text: prompt }] }],
-            });
+        // Extract the API key from the Authorization header
+        const authorizationHeader = req.headers.get("Authorization");
+        if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+            return new Response('Unauthorized', { status: 401 });
+        }
+        const apiKey = authorizationHeader.split("Bearer ")[1];
 
-        // Convert the response into a friendly text-stream
-        const stream = GoogleGenerativeAIStream(response);
+        // Initialize the Google Generative AI client
+        const genAI = new GoogleGenerativeAI(apiKey);
 
-        // Read the stream into a string
-        const review = await new Response(stream).text();
+        // Ask Google Generative AI for a streaming completion given the prompt
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-        // Respond with the review
-        return new Response(review, { status: 200 });
+        const result = await model.generateContent(prompt);
+
+        console.log('Response:', result);
+        const response = await result.response;
+        const text = await response.text(); // Await the text here
+        console.log(text);
+
+        // Respond with the stream
+        return new Response(text, {
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+        });
     } catch (error) {
-        console.error("Error generating review:", error);
-        return new Response('Internal Server Error', { status: 500 });
+        console.error('Error:', error);
+        return new Response('An error occurred', { status: 500 });
     }
 }
-
