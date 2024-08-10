@@ -51,7 +51,7 @@ export const languageOptions = [
   
 
  export const modelOptions = [
-    { name: "GPT-3.5 Turbo", value: "gpt", icon: "simple-icons:openai" },
+    // { name: "GPT-3.5 Turbo", value: "gpt", icon: "simple-icons:openai" },
     {
       name: "Google Gemini Pro",
       value: "gemini",

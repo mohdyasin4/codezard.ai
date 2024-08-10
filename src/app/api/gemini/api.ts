@@ -1,13 +1,14 @@
-// app/api/gemini.ts
-export async function generateCodeGemini(prompt: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
+// app/api/gemini/api.ts
+export async function generateCodeGemini(prompt: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>, apiKey?: string) {
     setLoading(true);
     try {
         const response = await fetch("/api/gemini", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`,
             },
-            body: JSON.stringify({ prompt }),
+            body: JSON.stringify({ prompt, apiKey }),
         });
 
         if (response.ok) {
@@ -16,7 +17,7 @@ export async function generateCodeGemini(prompt: string, setLoading: React.Dispa
             // Extract code from the response data
             const codeRegex = /```(\w+)\n([\s\S]*)```/; // Regex to extract code
             const matches = responseData.match(codeRegex);
-
+            console.log("Response Data:", responseData.toString());
             if (matches && matches.length === 3) {
                 const language = matches[1];
                 const code = matches[2];

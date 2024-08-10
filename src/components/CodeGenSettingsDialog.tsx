@@ -35,7 +35,7 @@ interface CodeGenSettingsDialogProps {
   handleModelChange: (model: string) => void;
   handleApiKeyChange: (event: { target: { value: any } }) => void;
 }
-const CodeGenSettingsDialog = ({selectedModel, apiKey, setSelectedModel, setApiKey, handleApiKeyChange, handleModelChange}:CodeGenSettingsDialogProps) => {
+const CodeGenSettingsDialog = ({ selectedModel, apiKey, setSelectedModel, setApiKey, handleApiKeyChange, handleModelChange }: CodeGenSettingsDialogProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState("Html");
   const [selectedTemplate, setSelectedTemplate] = useState(""); // Add this line
   const [customPrompt, setCustomPrompt] = useState("");
@@ -66,116 +66,116 @@ const CodeGenSettingsDialog = ({selectedModel, apiKey, setSelectedModel, setApiK
       setCustomPrompt("");
     }
   };
- 
+
   // const handleApiKeyChange = (event: { target: { value: any } }) => {
   //   const value = event.target.value;
   //   setApiKey(value);
   // };
 
- const handleGenerateCode = async () => {
-  setLoading(true);
+  const handleGenerateCode = async () => {
+    setLoading(true);
 
-  // Store selected language, template, custom prompt, and model in localStorage
-  localStorage.setItem("selectedLanguage", selectedLanguage);
-  localStorage.setItem("selectedTemplate", selectedTemplate);
-  localStorage.setItem("customPrompt", customPrompt);
-  localStorage.setItem("selectedModel", selectedModel);
+    // Store selected language, template, custom prompt, and model in localStorage
+    localStorage.setItem("selectedLanguage", selectedLanguage);
+    localStorage.setItem("selectedTemplate", selectedTemplate);
+    localStorage.setItem("customPrompt", customPrompt);
+    localStorage.setItem("selectedModel", selectedModel);
 
-  // Find the selected template by name and retrieve its ID
-  let templateOptionsForLanguage = templateOptions[selectedLanguage];
-  if (!templateOptionsForLanguage) {
-    setLoading(false);
-    console.error("No templates available for the selected language.");
-    return;
-  }
-
-  const selectedTemplateObj = templateOptionsForLanguage.find(
-    (template) => template.name === selectedTemplate
-  );
-
-  if (!selectedTemplateObj) {
-    setLoading(false);
-    console.error("Selected template not found.");
-    return;
-  }
-
-  // Conditionally store the API key based on the selected model
-  if (selectedModel === "gpt") {
-    localStorage.setItem("gpt-apiKey", apiKey);
-  } else if (selectedModel === "gemini") {
-    localStorage.setItem("gemini-apiKey", apiKey);
-  }
-
-  let response;
-  let code;
-  let language;
-  let id = selectedTemplateObj.id.toString();
-
-  try {
-    if (selectedTemplate === "Custom Prompt") {
-      // Generate code for custom prompt based on the selected model
-      if (selectedModel === "gpt") {
-        response = await generateCodeOpenAI(customPrompt, setLoading);
-        if (response) {
-          language = response.language;
-          code = response.code;
-        }
-      } else if (selectedModel === "gemini") {
-        response = await generateCodeGemini(customPrompt, setLoading);
-        if (response) {
-          language = response.language;
-          code = response.code;
-        }
-      }
-    } else {
-      // Generate code using selected template prompt
-      const prompt = selectedTemplateObj.prompt; // Use the prompt directly from the selected template
-      // Call the appropriate generateCode function based on the selected model
-      if (selectedModel === "gpt") {
-        response = await generateCodeOpenAI(prompt ?? "", setLoading);
-        if (response) {
-          language = response.language;
-          code = response.code;
-        }
-      } else if (selectedModel === "gemini") {
-        response = await generateCodeGemini(prompt ?? "", setLoading);
-        if (response) {
-          language = response.language;
-          code = response.code;
-        }
-      }
+    // Find the selected template by name and retrieve its ID
+    let templateOptionsForLanguage = templateOptions[selectedLanguage];
+    if (!templateOptionsForLanguage) {
+      setLoading(false);
+      console.error("No templates available for the selected language.");
+      return;
     }
-    console.log("After generating code:", code, language);
 
-    // Call the onCodeGenerated function with the generated code
-    setGeneratedCode(code);
-    setLanguage(language);
-    // Redirect to generate-code with the selected template id as a query parameter
-    const url = `/generate-code?id=${id}`;
-    // Use the constructed URL to navigate
-    router.push(url);
-  } catch (error) {
-    console.error("Error generating code:", error);
-    setLoading(false); // Reset loading state on error
-    // Handle error gracefully, e.g., show error message to the user
-  }
-};
+    const selectedTemplateObj = templateOptionsForLanguage.find(
+      (template) => template.name === selectedTemplate
+    );
+
+    if (!selectedTemplateObj) {
+      setLoading(false);
+      console.error("Selected template not found.");
+      return;
+    }
+
+    // Conditionally store the API key based on the selected model
+    if (selectedModel === "gpt") {
+      localStorage.setItem("gpt-apiKey", apiKey);
+    } else if (selectedModel === "gemini") {
+      localStorage.setItem("gemini-apiKey", apiKey);
+    }
+
+    let response;
+    let code;
+    let language;
+    let id = selectedTemplateObj.id.toString();
+
+    try {
+      if (selectedTemplate === "Custom Prompt") {
+        // Generate code for custom prompt based on the selected model
+        if (selectedModel === "gpt") {
+          response = await generateCodeOpenAI(customPrompt, setLoading);
+          if (response) {
+            language = response.language;
+            code = response.code;
+          }
+        } else if (selectedModel === "gemini") {
+          response = await generateCodeGemini(customPrompt, setLoading, apiKey);
+          if (response) {
+            language = response.language;
+            code = response.code;
+          }
+        }
+      } else {
+        // Generate code using selected template prompt
+        const prompt = selectedTemplateObj.prompt; // Use the prompt directly from the selected template
+        // Call the appropriate generateCode function based on the selected model
+        if (selectedModel === "gpt") {
+          response = await generateCodeOpenAI(prompt ?? "", setLoading);
+          if (response) {
+            language = response.language;
+            code = response.code;
+          }
+        } else if (selectedModel === "gemini") {
+          response = await generateCodeGemini(prompt ?? "", setLoading, apiKey);
+          if (response) {
+            language = response.language;
+            code = response.code;
+          }
+        }
+      }
+      console.log("After generating code:", code, language);
+
+      // Call the onCodeGenerated function with the generated code
+      setGeneratedCode(code);
+      setLanguage(language);
+      // Redirect to generate-code with the selected template id as a query parameter
+      const url = `/generate-code?id=${id}`;
+      // Use the constructed URL to navigate
+      router.push(url);
+    } catch (error) {
+      console.error("Error generating code:", error);
+      setLoading(false); // Reset loading state on error
+      // Handle error gracefully, e.g., show error message to the user
+    }
+  };
 
 
   useEffect(() => {
     // Check if all fields are filled
     setAllFieldsFilled(
       selectedLanguage &&
-        selectedTemplate &&
-        apiKey &&
-        selectedModel &&
-        (selectedTemplate !== "Custom Prompt" || customPrompt)
+      selectedTemplate &&
+      apiKey &&
+      selectedModel &&
+      (selectedTemplate !== "Custom Prompt" || customPrompt)
     );
   }, [selectedLanguage, selectedTemplate, customPrompt, selectedModel, apiKey]);
 
   return (
     <div className="flex h-full flex-col">
-    <Label className="text-2xl mb-2 flex-row flex items-center"><Code2 className="mr-2"/>Code Generation</Label>
+      <Label className="text-2xl mb-2 flex-row flex items-center"><Code2 className="mr-2" />Code Generation</Label>
       {!selectedModel || !apiKey ? (
         <div className="flex flex-col w-full py-6 items-end justify-center">
           <Alert variant={"default"} className="w-full relative">
@@ -227,45 +227,45 @@ const CodeGenSettingsDialog = ({selectedModel, apiKey, setSelectedModel, setApiK
             Templates
           </Label>
           <div className="grid grid-cols-3 col-span-3 gap-3">
-    {templateOptions[selectedLanguage] ? (
-      templateOptions[selectedLanguage].map((template) => (
-        <div key={template.id} className="relative">
-          <Button
-            variant={
-              selectedTemplate === template.name ? "secondary" : "outline"
-            }
-            onClick={() => handleTemplateChange(template.name)}
-            className="transition-colors duration-500 w-52"
-          >
-            {template.name}
+            {templateOptions[selectedLanguage] ? (
+              templateOptions[selectedLanguage].map((template) => (
+                <div key={template.id} className="relative">
+                  <Button
+                    variant={
+                      selectedTemplate === template.name ? "secondary" : "outline"
+                    }
+                    onClick={() => handleTemplateChange(template.name)}
+                    className="transition-colors duration-500 w-52"
+                  >
+                    {template.name}
 
-            {selectedTemplate === template.name && (
-              <div className="absolute right-0 top-0 bottom-0 flex items-center pr-4">
-                <Check size={14} className="text-primary" />
-              </div>
+                    {selectedTemplate === template.name && (
+                      <div className="absolute right-0 top-0 bottom-0 flex items-center pr-4">
+                        <Check size={14} className="text-primary" />
+                      </div>
+                    )}
+                  </Button>
+                </div>
+              ))
+            ) : (
+              <div>No templates available for the selected language</div>
             )}
-          </Button>
-        </div>
-      ))
-    ) : (
-      <div>No templates available for the selected language</div>
-    )}
-  </div>
+          </div>
         </div>
         <div className="grid grid-cols-4 gap-4 items-center">
           <Label htmlFor="model" className="text-right">
             AI Model
           </Label>
           <div className="col-span-3">
-            
-    <ModelSelect
-        selectedModel={selectedModel}
-        apiKey={apiKey}
-        handleModelChange={handleModelChange}
-        handleApiKeyChange={handleApiKeyChange}
-      />
+
+            <ModelSelect
+              selectedModel={selectedModel}
+              apiKey={apiKey}
+              handleModelChange={handleModelChange}
+              handleApiKeyChange={handleApiKeyChange}
+            />
           </div>
-      </div>
+        </div>
         {selectedTemplate === "Custom Prompt" && (
           <div className="grid grid-cols-4 items-start gap-4">
             <Label htmlFor="customPrompt" className="text-right">
@@ -300,13 +300,13 @@ const CodeGenSettingsDialog = ({selectedModel, apiKey, setSelectedModel, setApiK
           )}
         </Button>
       </DialogFooter>
-     {!isNotReviewPage && (
-       <ReviewDialog 
-       selectedModel={selectedModel}
-       apiKey={apiKey}
-       handleModelChange={handleModelChange}
-       handleApiKeyChange={handleApiKeyChange}
-       />
+      {!isNotReviewPage && (
+        <ReviewDialog
+          selectedModel={selectedModel}
+          apiKey={apiKey}
+          handleModelChange={handleModelChange}
+          handleApiKeyChange={handleApiKeyChange}
+        />
       )}
     </div>
   );

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^0.0.35",
     "@fontsource/cascadia-code": "^4.2.1",
     "@google/generative-ai": "^0.5.0",
     "@hookform/resolvers": "^3.3.4",
@@ -65,7 +66,7 @@
     "@uiw/codemirror-theme-dracula": "^4.21.24",
     "@uiw/codemirror-theme-vscode": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.24",
-    "ai": "^3.0.19",
+    "ai": "^3.3.5",
     "animejs": "^3.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

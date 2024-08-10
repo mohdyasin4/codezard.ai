@@ -199,7 +199,7 @@ const Editor = () => {
     } else if (selectedModel === "gemini") {   
       // Close the dialog
       // Call the function to generate code with the custom prompt
-      response = await generateCodeGemini(customPrompt, setLoading);
+      response = await generateCodeGemini(customPrompt, setLoading, localStorage.getItem("gemini-apiKey") || "");
       if(response){
         code = response.code;
         language = response.language;

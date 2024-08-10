@@ -61,7 +61,7 @@ export default function Sidebar({
     let code;
     let language;
     if (selectedModel === "gemini") {
-      response = await generateCodeGemini(prompt, setLoading);
+      response = await generateCodeGemini(prompt, setLoading, localStorage.getItem("gemini-apiKey"));
       if(response){
         code = response.code;
         language = response.language;
