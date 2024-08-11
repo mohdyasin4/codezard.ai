@@ -104,7 +104,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Connect with Me 🔗
 
-If you have any questions, feel free to reach out or connect with me on [LinkedIn](https://www.linkedin.com/in/mohdyasin4).
+If you have any questions, feel free to reach out or connect with me on [LinkedIn](https://www.linkedin.com/in/mohdyasinn/).
 
 ---
 
