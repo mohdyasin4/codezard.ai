@@ -92,10 +92,6 @@ Contributions are welcome! Feel free to submit issues, feature requests, or pull
 4. Push to the branch (`git push origin feature/your-feature-name`)
 5. Open a pull request
 
-## License 📄
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments 🙌
 
 - **OpenAI** for providing the GPT model that powers the code suggestions.
