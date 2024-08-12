@@ -6,6 +6,11 @@ Here's a template for your README file based on the details you've provided:
 
 **Codezard.ai** is an AI-powered coding assistance tool designed to streamline the development process by providing real-time code suggestions, debugging assistance, and more. Built with modern web technologies, Codezard.ai enhances coding efficiency and productivity for developers of all levels.
 
+# Demo Video 🎥
+Check out the demo video to see Codezard.ai in action:
+
+https://github.com/user-attachments/assets/05164ba0-7397-4a0d-9539-0fca99d78cb6/
+
 ## Features ✨
 
 - **Intelligent Code Suggestions**: Get real-time code suggestions tailored to your context.
